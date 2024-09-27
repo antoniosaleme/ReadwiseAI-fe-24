@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import ContentSection from '@/components/ContentSection.astro';
+import { fetchDailyContent } from '@/services';
+import { Button } from '@/components/ui/button';
+import { Separator } from "@/components/ui/separator"
+
+
+export const getStaticPaths = (async () => {
+  const content = await fetchDailyContent();
+  return content.map((item) => ({
+    params: { topic: item.topic.toLowerCase() },
+    props: { 
+      levelB2: item.levelB2, 
+      levelC2: item.levelC2, 
+      difficultWordsB2: item.difficultWordsB2, 
+      difficultWordsC2: item.difficultWordsC2, 
+      audioB2Url: item.audioB2Url, 
+      audioC2Url: item.audioC2Url 
+    }
+  }));
+}) satisfies GetStaticPaths;
+
+const { topic } = Astro.params;
+const { levelB2, levelC2, difficultWordsB2, difficultWordsC2, audioB2Url, audioC2Url } = Astro.props;
+---
+
+<Layout title="Daily content">
+    <section class="m-4 md:mt-20 md:mx-60 flex flex-col items-start justify-start">
+    <a href="/">
+        <Button>Home</Button>
+    </a>
+
+    <ContentSection 
+      level={`${topic} - B2`} 
+      text={levelB2} 
+      difficultWords={difficultWordsB2} 
+      audioUrl={audioB2Url} 
+    />
+
+    <Separator className="my-10" />
+
+    <ContentSection 
+      level={`${topic} - C2`} 
+      text={levelC2} 
+      difficultWords={difficultWordsC2} 
+      audioUrl={audioC2Url} 
+    />
+</section>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import { Button } from './ui/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+
+interface Props {
+  level: string;
+  text: string;
+  difficultWords: { word: string; translation: string }[];
+  audioUrl: string;
+}
+
+const { level, text, difficultWords, audioUrl } = Astro.props;
+---
+
+
+
+  <h1 class="text-3xl capitalize mb-6">{level}</h1>
+  <p class="text-lg mb-6">{text}</p>
+  <div class="flex flex-row justify-between w-full ">
+      
+      <Card className="md:w-1/2">
+        <CardHeader>
+          <CardTitle>Dictionary:</CardTitle>
+          {difficultWords.map((word) => ( 
+            <CardDescription><span class="font-bold">{word.word}:</span> {word.translation}</CardDescription>
+          ))}
+        </CardHeader>
+        
+        <CardFooter>
+            <audio class="w-full mt-2" controls src={audioUrl} />
+        </CardFooter>
+      </Card>
+  </div>
