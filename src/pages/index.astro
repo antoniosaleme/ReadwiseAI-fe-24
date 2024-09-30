@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import { fetchDailyContent } from '../services/fetchDailyContent';
 import { Button } from "@/components/ui/button"
 import type { ReadwiseResponse } from '@/interfaces/interfaces';
+import FilterPanel from '@/components/FilterPanel.astro';
 
 
 let content: ReadwiseResponse[] = [];
@@ -31,10 +32,10 @@ try {
     {error ? (
       <p>Error al obtener el contenido: {error}</p>
     ) : content.length > 0 ? (
-       <div class="grid grid-cols-2 gap-3">
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
          {content.map((item) => (
            <a href={`/topic/${item.topic.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}`}>
-            <Button className="w-full mr-2 text-xs">
+            <Button className="w-full mr-2 text-xs md:text-sm">
               {item.topic}
             </Button>
             </a>
@@ -44,7 +45,9 @@ try {
     ) : (
       <p>There is no content.</p>
     )}
+    <FilterPanel />
   </main>
+
 </Layout>
 
 <style>

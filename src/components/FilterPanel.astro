@@ -1,0 +1,70 @@
+---
+import { Checkbox } from "@/components/ui/checkbox"
+import {TOPICS, LANGUAGES} from "@/constants"
+import { Separator } from "@radix-ui/react-separator"
+
+---
+
+<div>
+    <h2 class="mt-4 mb-2">Choose topic</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {
+            TOPICS.map((topic) => (
+            <div>
+                <Checkbox id="terms2" disabled />
+                <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                >
+                {topic}
+                </label>
+            </div>
+            ))
+        }
+    </div>
+    <Separator className="my-4" />
+    <h2 class="mt-4 mb-2">Choose level</h2>
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-3">
+        <div>
+            <Checkbox id="terms2" disabled />
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+            >
+              b2
+            </label>
+        </div>
+        <div>
+            <Checkbox id="terms2" disabled />
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+            >
+              c2
+            </label>
+        </div>
+    </div>
+    <h2 class="mt-4 mb-2">Do you want to have audio?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-3">
+        <div>
+            <Checkbox id="terms2" disabled />
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+            >
+              Yes
+            </label>
+        </div>
+    </div>
+    <h2 class="mt-4 mb-2">Choose language</h2>
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-3">
+        {
+            LANGUAGES.map((language) => (
+                <div>
+                    <Checkbox id="terms2" disabled />
+                    <label
+                      class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                    >
+                      {language.name}
+                    </label>
+                </div>
+            ))
+        }
+    </div>
+</h1>
