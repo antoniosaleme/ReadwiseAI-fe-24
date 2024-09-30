@@ -26,15 +26,15 @@ try {
 
 <Layout title="Daily content">
   <main>
-    <h1>Contenido del día</h1>
+    <h1>Daily content</h1>
 
     {error ? (
       <p>Error al obtener el contenido: {error}</p>
     ) : content.length > 0 ? (
-       <div class="grid grid-cols-4 gap-3">
+       <div class="grid grid-cols-2 gap-3">
          {content.map((item) => (
            <a href={`/topic/${item.topic.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}`}>
-            <Button className="w-full mr-2">
+            <Button className="w-full mr-2 text-xs">
               {item.topic}
             </Button>
             </a>
